@@ -128,7 +128,37 @@ class App extends Component {
 
     };  
 
-  
+    guardarPerfil = () => {
+        const {nombre, apellido, email, telefono, descripcion} = this.state;
+        //validar que los campos obligatorios no esten vacios
+        //nombre, apellido, email
+        if (!nombre.trim() || !apellido.trim() || !email.trim()) {
+            Alert.alert (
+                'Campos vacios',
+                'Los campos nombre, apellido y email no pueden estar vacios',
+                [{text: 'OK'}]
+            );
+            return;
+        }
+            //validar el correo
+        if (!email.includes('@')) {
+            Alert.alert(
+                'Email inválido',
+                'Por favor ingresar un correo válido',
+                [{text: 'OK'}]
+            );
+            return;
+        }
+        this.setState({
+            mostrarPerfil: true
+        });
+        Alert.alert(
+            'Perfil guardado',
+            'su perfil se guardo con éxito',
+            [{text: 'OK'}]
+        );
+    };
+
 
     limpiarFormulario = () => {  
 
@@ -299,14 +329,16 @@ class App extends Component {
   
 
                     <View>  
+                        <View style={styles.buttonWrapper}>
+                            <Button  
 
-                        <Button  
+                                title='Guardar perfil'  
 
-                            title='Guardar perfil'  
+                                onPress={this.guardarPerfil} // Agrega la función que desees aquí 
 
-                            onPress={() => Alert.alert(mensajeAprobacion)} // Agrega la función que desees aquí 
-
-                        />  
+                            />  
+                        </View>
+                        
 
                         <Button  
 
@@ -330,25 +362,158 @@ class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#f5f5f5'
+      flex: 1,
+      backgroundColor: '#f5f5f5',
     },
-
     header: {
-        color: 'white',
-        backgroundColor: '#3143abff',
-        alignItems: 'center',
-        marginBottom: 20,
-        padding: 30
+      backgroundColor: '#3F51B5',
+      padding: 30,
+      alignItems: 'center',
+      marginBottom: 20,
     },
-    imagen: {
-        width: 80,
-        height: 80,
-        border: 30,
-        marginBottom: 15,
-        borderWidth: 4,
-        borderColor: 'cyan'
-    }
+    profileImage: {
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      marginBottom: 15,
+      borderWidth: 3,
+      borderColor: 'white',
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: 'white',
+      textAlign: 'center',
+    },
+    subtitle: {
+      fontSize: 16,
+      color: '#E8EAF6',
+      textAlign: 'center',
+      marginTop: 5,
+    },
+    statusContainer: {
+      backgroundColor: '#E3F2FD',
+      padding: 15,
+      marginHorizontal: 20,
+      borderRadius: 8,
+      marginBottom: 20,
+    },
+    statusText: {
+      fontSize: 14,
+      color: '#1976D2',
+      textAlign: 'center',
+      fontWeight: '500',
+    },
+    formContainer: {
+      backgroundColor: 'white',
+      margin: 20,
+      padding: 20,
+      borderRadius: 10,
+      elevation: 3,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+    },
+    sectionTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#333',
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+    inputContainer: {
+      marginBottom: 20,
+    },
+    label: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#333',
+      marginBottom: 8,
+    },
+    textInput: {
+      borderWidth: 1,
+      borderColor: '#ddd',
+      borderRadius: 8,
+      padding: 12,
+      fontSize: 16,
+      backgroundColor: '#fafafa',
+    },
+    textArea: {
+      height: 100,
+      textAlignVertical: 'top',
+    },
+    buttonContainer: {
+      marginTop: 20,
+    },
+    buttonWrapper: {
+      marginVertical: 8,
+    },
+    profileContainer: {
+      backgroundColor: 'white',
+      margin: 20,
+      padding: 20,
+      borderRadius: 10,
+      elevation: 3,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+    },
+    profileImageContainer: {
+      alignItems: 'center',
+      marginBottom: 20,
+    },
+    profileImageLarge: {
+      width: 100,
+      height: 100,
+      borderRadius: 50,
+      borderWidth: 3,
+      borderColor: '#4CAF50',
+    },
+    profileInfo: {
+      marginBottom: 20,
+    },
+    profileRow: {
+      marginBottom: 15,
+      paddingBottom: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#eee',
+    },
+    profileLabel: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      color: '#666',
+      marginBottom: 5,
+    },
+    profileValue: {
+      fontSize: 16,
+      color: '#333',
+      fontWeight: '500',
+    },
+    profileDescription: {
+      fontSize: 16,
+      color: '#333',
+      lineHeight: 22,
+    },
+    footer: {
+      backgroundColor: '#37474F',
+      padding: 20,
+      marginTop: 20,
+      alignItems: 'center',
+    },
+    footerText: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    footerSubtext: {
+      color: '#B0BEC5',
+      fontSize: 12,
+      textAlign: 'center',
+      marginVertical: 2,
+    },
 })
 
 export default App;  
