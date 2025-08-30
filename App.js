@@ -1,131 +1,67 @@
 import React, { Component } from 'react';  
-
 import {  
-
     View,  
-
     Text,  
-
     Image,  
-
     ScrollView,  
-
     TextInput,  
-
     Button,  
-
     StyleSheet,  
-
     Alert  
-
 } from 'react-native';  
 
-  
-
 class App extends Component {  
-
     constructor(props) {  
-
-        super(props);  
-
+        super(props);
         this.state = {  
-
             nombre: '',  
-
             apellido: '',  
-
             email: '',  
-
             telefono: '',  
-
             descripcion: '',  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "Perfil creado con éxito"   
-
         };  
-
     }  
 
-  
-
     manejarCambioNombre = (texto) => {  
-
         this.setState({  
-
             nombre: texto,  
-
             mostrarPerfil: false,  
-
-            mensajeAprobacion: "listo calistos"   
-
+            mensajeAprobacion: "listo calisto"   
         });  
-
     };  
-
-  
 
     manejarCambioApellido = (texto) => {  
-
         this.setState({  
-
             apellido: texto,  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "listo calisto"   
-
         });  
-
     };  
-
-  
 
     manejarCambioEmail = (texto) => {  
-
         this.setState({  
-
             email: texto,  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "listo calisto"   
-
         });  
-
     };  
-
-  
 
     manejarCambioTelefono = (texto) => {  
-
         this.setState({  
-
             telefono: texto,  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "listo calisto"   
-
         });  
-
     };  
 
-  
-
     manejarCambioDescripcion = (texto) => {  
-
         this.setState({  
-
             descripcion: texto,  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "listo calisto"   
-
         });  
-
     };  
 
     guardarPerfil = () => {
@@ -161,203 +97,119 @@ class App extends Component {
 
 
     limpiarFormulario = () => {  
-
         this.setState({  
-
             nombre: '',  
-
             apellido: '',  
-
             email: '',  
-
             telefono: '',  
-
             descripcion: '',  
-
             mostrarPerfil: false,  
-
             mensajeAprobacion: "Limpiar campos"   
-
         });  
 
-  
-
         Alert.alert(  
-
             'Formulario Limpiando', // Título de la alerta  
-
             'Todos los campos han sido borrados',  
-
             [{ text: 'OK' }]  
-
         );  
-
-    };  
-
-  
+    }; 
 
     render() {  
-
-        const {  
-
+        const { 
             nombre,   
-
             apellido,   
-
             email,   
-
             telefono,   
-
             descripcion,   
-
             mostrarPerfil,   
-
             mensajeAprobacion  
-
         } = this.state;  
 
-  
-
         return (  
-
             <>  
-
-                <ScrollView style={styles.container}>  
-
-                    <View>  
-
+                <ScrollView style={styles.formContainer}>  
+                    <View style={styles.statusContainer}>  
+                      <View style={styles.profileImageContainer}>
                         <Image  
-
                             source={require('./imgs/profile1.png')}  
-
-                            style={styles.imagen} // Asegúrate de definir el estilo 
-
+                            style={styles.profileImage} // Asegúrate de definir el estilo 
                             resizeMode='cover'  
-
-                        />  
-
-                        <Text>Mi perfil de usuario</Text>  
-
-                        <Text>Mi aplicación demo de react</Text>  
-
+                        /> 
+                      </View>
+                         
+                        <Text style={styles.title}>Mi perfil de usuario</Text>  
+                        <Text style={styles.subtitle}>Mi aplicación demo de react</Text>  
                     </View>  
 
-  
-
                     <View>  
-
-                        <Text style={styles.header}>Nombre</Text>  
-
+                        <Text style={styles.label}>Nombre</Text>  
                         <TextInput  
-
+                            style={styles.textInput}
                             value={nombre}  
-
                             onChangeText={this.manejarCambioNombre}  
-
                             placeholder='Ingresa tu nombre'  
-
                             placeholderTextColor="#999"  
-
                         />  
 
-  
-
-                        <Text style={styles.header}>Apellido</Text>  
-
+                        <Text style={styles.label}>Apellido</Text>  
                         <TextInput  
-
+                            style={styles.textInput}
                             value={apellido}  
-
                             onChangeText={this.manejarCambioApellido}  
-
                             placeholder='Ingresa tu Apellido'  
-
                             placeholderTextColor="#999"  
-
                         />  
 
-  
-
-                        <Text style={styles.header}>Email</Text>  
-
+                        <Text style={styles.label}>Email</Text>  
                         <TextInput  
-
+                            style={styles.textInput}
                             value={email}  
-
                             onChangeText={this.manejarCambioEmail}  
-
                             placeholder='Ingresa tu email'  
-
                             placeholderTextColor="#999"  
-
                         />  
 
-  
-
-                        <Text style={styles.header}>Teléfono</Text>  
-
+                        <Text style={styles.label}>Teléfono</Text>  
                         <TextInput  
-
+                            style={styles.textInput}
                             value={telefono}  
-
                             onChangeText={this.manejarCambioTelefono}  
-
                             placeholder='Ingresa tu teléfono'  
-
                             placeholderTextColor="#999"  
-
                         />  
 
-  
-
-                        <Text style={styles.header}>Descripción</Text>  
-
+                        <Text style={styles.label}>Descripción</Text>  
                         <TextInput  
-
+                            style={styles.textInput}
                             value={descripcion}  
-
                             onChangeText={this.manejarCambioDescripcion}  
-
                             placeholder='Ingresa tu descripción'  
-
                             placeholderTextColor="#999"  
-
                         />  
-
                     </View>  
 
-  
-
-                    <View>  
+                    <View style={styles.buttonContainer}>  
                         <View style={styles.buttonWrapper}>
                             <Button  
-
+                                color='purple'
                                 title='Guardar perfil'  
-
                                 onPress={this.guardarPerfil} // Agrega la función que desees aquí 
-
                             />  
                         </View>
-                        
-
-                        <Button  
-
+                      
+                        <View style={styles.buttonWrapper}>
+                          <Button  
+                            color='purple'
                             title='Limpiar datos'  
-
                             onPress={this.limpiarFormulario}  
-
-                        />  
-
+                          />  
+                        </View>
+                        
                     </View>  
-
                 </ScrollView>  
-
             </>  
-
         );  
-
     }  
-
 }  
 
 const styles = StyleSheet.create({
@@ -387,12 +239,12 @@ const styles = StyleSheet.create({
     },
     subtitle: {
       fontSize: 16,
-      color: '#E8EAF6',
+      color: '#ffffffff',
       textAlign: 'center',
       marginTop: 5,
     },
     statusContainer: {
-      backgroundColor: '#E3F2FD',
+      backgroundColor: '#885cc2ff',
       padding: 15,
       marginHorizontal: 20,
       borderRadius: 8,
@@ -407,6 +259,7 @@ const styles = StyleSheet.create({
     formContainer: {
       backgroundColor: 'white',
       margin: 20,
+      marginTop: 30,
       padding: 20,
       borderRadius: 10,
       elevation: 3,
@@ -430,6 +283,7 @@ const styles = StyleSheet.create({
       fontWeight: '600',
       color: '#333',
       marginBottom: 8,
+      marginTop: 5,
     },
     textInput: {
       borderWidth: 1,
@@ -462,7 +316,7 @@ const styles = StyleSheet.create({
     },
     profileImageContainer: {
       alignItems: 'center',
-      marginBottom: 20,
+      marginBottom: 5,
     },
     profileImageLarge: {
       width: 100,
